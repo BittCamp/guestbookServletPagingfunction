@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+#guestbookForm div {
+	color: red;
+	font-size: 9pt;
+	font-weight: bold;
+}
+</style>
+</head>
+<body>
+<form name="guestbookForm" id="guestbookForm" method="post" action="/guestbookServlet/write">
+<table border="1" cellpadding="5" cellspacing="0">
+	<tr>
+		<th width="100">이름</th>
+        <td>
+        	<input type="text" name="name" id="name" size="20" maxlehgth="5" placeholder="작성자 입력">
+		</td>
+	</tr>
+	<tr>
+		<th>이메일</th>
+		<td>
+        	<input type="email" name="email" id="email" size="30" placeholder="이메일 입력">
+		</td>
+	</tr>
+	<tr>
+		<th>홈페이지</th>
+		<td>
+        	<input type="url" name="homepage" id="url" size="40" value="http://">
+		</td>
+	</tr>
+	<tr>
+		<th>제목</th>
+    	<td>
+        	<input type="text" name="subject" id="subject" size="50" placeholder="제목 입력">
+            <div id="subjectDiv"></div>
+        </td>
+	</tr>
+	<tr>
+		<th>내용</th>
+    	<td>
+        	<textarea name="content" id="content" rows="15" cols="50"></textarea>
+            <div id="contentDiv"></div>
+        </td>
+	</tr>
+	<tr>
+    	<td colspan="2" align="center">
+			<input type="button" value="글작성" id="writeBtn">
+        	<input type="reset" value="다시작성">
+        	<input type="button" value="글목록" onclick="location.href='/guestbookServlet/list?pg=1'"/>
+       	</td>
+	</tr>
+</table>
+</form>
+<script type="text/javascript" src="http://code.jquery.com/jquery-3.7.0.min.js"></script>
+<script>
+$('#writeBtn').click(function(){
+	$('#subjectDiv').text('');
+	$('#contentDiv').empty();
+	
+	if($('#subject').val() == '') 
+		$('#subjectDiv').text('제목 입력'); 
+	else if($('#content').val() == '') 
+		$('#contentDiv').text('내용 입력');
+	else 
+		$('#guestbookForm').submit();
+	
+});
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
